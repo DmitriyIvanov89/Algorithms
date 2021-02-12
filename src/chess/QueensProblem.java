@@ -24,14 +24,14 @@ public class QueensProblem {
         return true;
     }
 
-    public void placeNQueen (int column, int n) {
+    public void placeQueen (int column, int n) {
         for (int row = 0; row < n; row++) {
             if (canPlaceQueens(row,column)) {
                 board[column] = row;
                 if (column == n - 1) {
                     print(board);
                 } else {
-                    placeNQueen(column + 1, n);
+                    placeQueen(column + 1, n);
                 }
             }
         }
@@ -53,6 +53,6 @@ public class QueensProblem {
     }
 
     public void callplaceNQueen () {
-        placeNQueen(0, board.length);
+        placeQueen(0, board.length);
     }
 }
