@@ -4,11 +4,11 @@ public class QueensProblem {
 
     public static void main(String[] args) {
 
-        QueensProblem Q = new QueensProblem(8);
-        Q.callplaceNQueen();
+        QueensProblem Q = new QueensProblem(4);
+        Q.callplaceQueen();
 
     }
-    
+
     int[] board;
 
     public QueensProblem(int N) {
@@ -52,7 +52,7 @@ public class QueensProblem {
         System.out.println();
     }
 
-    public void callplaceNQueen () {
+    public void callplaceQueen () {
         placeQueen(0, board.length);
     }
 }
