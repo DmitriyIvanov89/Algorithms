@@ -8,7 +8,7 @@ public class QueensProblem {
         Q.callplaceNQueen();
 
     }
-
+    
     int[] board;
 
     public QueensProblem(int N) {
