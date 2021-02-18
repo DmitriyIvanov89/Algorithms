@@ -3,6 +3,7 @@ package chess;
 public class KnightsTour {
     public static void main(String[] args) {
 
+        start();
 
     }
     static int N = 8;
@@ -30,5 +31,29 @@ public class KnightsTour {
         return false;
     }
 
-    
+    public static boolean start() {
+        int[][] sol = new int[N + 1][N + 2];
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j<= N; j++) {
+                sol[i][j] = -1;
+            }
+        }
+
+        int[] iMove = {2, 1, -1, -2, -2, -1, 1, 2};
+        int[] jMove = {1, 2, 2, 1, -1, -2, -2, -1};
+
+        sol[1][1] = 0;
+
+        if (knightTour(sol, 1, 1, 1, iMove, jMove)) {
+            for (int i = 1; i <= N; i++) {
+                for (int j = 1; j <= N; j++) {
+                    System.out.print(sol[i][j] + "\t");
+                }
+                System.out.println("\n");
+            }
+            return true;
+        }
+        return false;
+    }
 }
