@@ -51,7 +51,7 @@ public class KnightsTour {
         int[] jMove = {1, 2, 2, 1, -1, -2, -2, -1};
         // Ставим коня на начальную клетку
         sol[1][1] = 0;
-        // 
+        //
         if (knightTour(sol, 1, 1, 1, iMove, jMove)) {
             for (int i = 1; i <= N; i++) {
                 for (int j = 1; j <= N; j++) {
