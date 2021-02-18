@@ -1,6 +1,7 @@
 package chess;
 
 public class KnightsTour {
+
     public static void main(String[] args) {
 
         start();
@@ -8,16 +9,21 @@ public class KnightsTour {
     }
     static int N = 8;
 
+    /* Метод, проверяющий принадлежность клетки [i][j] доске N * N
+     * клетка [i][j] соотвествует ходу коня
+     */
     public static boolean canMovieKnight (int i, int j, int sol[][]) {
         if (i >= 1 && i <= N && j >= 1 && j <= N && sol[i][j] == -1) {
             return true;
         }
         return false;
     }
-
+    /* Метод, поиска решения, принимающий доску, клетку с текущем положением коня [i][j],
+     * кол-во шагов коня, два массива, с координатами возможных ходов.
+     */
     public static boolean knightTour (int sol[][], int i, int j, int step, int iMove[], int jMove[]) {
-        if (step == N * N) return true;
-
+        if (step == N * N) return true; // если вся доска пройдена
+        // Проходим по всем возможным ходам
         for (int k = 0; k < 8; k++) {
             int nextI = i + iMove[k];
             int nextJ = j + jMove[k];
@@ -32,14 +38,14 @@ public class KnightsTour {
     }
 
     public static boolean start() {
-        int[][] sol = new int[N + 1][N + 2];
+        int[][] sol = new int[N + 1][N + 1];
 
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j<= N; j++) {
                 sol[i][j] = -1;
             }
         }
-
+        // Координаты 8ми возможных ходов коня из клетки [i][j]
         int[] iMove = {2, 1, -1, -2, -2, -1, 1, 2};
         int[] jMove = {1, 2, 2, 1, -1, -2, -2, -1};
 
@@ -50,7 +56,7 @@ public class KnightsTour {
                 for (int j = 1; j <= N; j++) {
                     System.out.print(sol[i][j] + "\t");
                 }
-                System.out.println("\n");
+                System.out.println();
             }
             return true;
         }
