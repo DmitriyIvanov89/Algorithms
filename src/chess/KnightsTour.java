@@ -2,11 +2,6 @@ package chess;
 
 public class KnightsTour {
 
-    public static void main(String[] args) {
-
-        start();
-
-    }
     static int N = 8;
 
     /* Метод, проверяющий принадлежность клетки [i][j] доске N * N
@@ -62,5 +57,11 @@ public class KnightsTour {
             return true;
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+
+        start();
+
     }
 }
