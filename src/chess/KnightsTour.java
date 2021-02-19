@@ -2,12 +2,18 @@ package chess;
 
 public class KnightsTour {
 
+    public static void main(String[] args) {
+
+        start();
+
+    }
+
     static int N = 8;
 
     /* Метод, проверяющий принадлежность клетки [i][j] доске N * N
      * клетка [i][j] соотвествует ходу коня
      */
-    public static boolean canMovieKnight (int i, int j, int sol[][]) {
+    public static boolean canPlaceKnight (int i, int j, int sol[][]) {
         if (i >= 0 && i < N && j >= 0 && j < N && sol[i][j] == -1) {
             return true;
         }
@@ -16,7 +22,7 @@ public class KnightsTour {
     /* Метод, поиска решения, принимающий доску, клетку с текущем положением коня [i][j],
      * кол-во шагов коня, два массива, с координатами возможных ходов.
      */
-    public static boolean knightTour (int sol[][], int i, int j, int step, int iMove[], int jMove[]) {
+    public static boolean knightMove (int sol[][], int i, int j, int step, int iMove[], int jMove[]) {
         if (step == N * N)
             return true; // если вся доска пройдена
         // Проходим по всем возможным ходам
@@ -24,9 +30,9 @@ public class KnightsTour {
             int nextI = i + iMove[k];
             int nextJ = j + jMove[k];
 
-            if (canMovieKnight(nextI,nextJ,sol)) {
+            if (canPlaceKnight(nextI,nextJ,sol)) {
                 sol[nextI][nextJ] = step; // запоминаем ход
-                if (knightTour(sol,nextI,nextJ,step + 1,iMove,jMove)) // проверяем следующий ход step + 1
+                if (knightMove(sol,nextI,nextJ,step + 1,iMove,jMove)) // проверяем следующий ход step + 1
                     return true;
                 sol[nextI][nextJ] = -1; // указываем, что данный ход не приводит к решению
             }
@@ -49,7 +55,7 @@ public class KnightsTour {
         // Ставим коня на начальную клетку
         sol[0][0] = 0;
         // вызов метода с начальной клетки sol[][]
-        if (knightTour(sol, 0, 0, 1, iMove, jMove)) {
+        if (knightMove(sol, 0, 0, 1, iMove, jMove)) {
             // при успешном решении, выводим # хода в консоль
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
@@ -60,11 +66,5 @@ public class KnightsTour {
             return true;
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-
-        start();
-
     }
 }
