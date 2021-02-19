@@ -17,16 +17,18 @@ public class KnightsTour {
      * кол-во шагов коня, два массива, с координатами возможных ходов.
      */
     public static boolean knightTour (int sol[][], int i, int j, int step, int iMove[], int jMove[]) {
-        if (step == N * N) return true; // если вся доска пройдена
+        if (step == N * N)
+            return true; // если вся доска пройдена
         // Проходим по всем возможным ходам
         for (int k = 0; k < 8; k++) {
             int nextI = i + iMove[k];
             int nextJ = j + jMove[k];
 
             if (canMovieKnight(nextI,nextJ,sol)) {
-                sol[nextI][nextJ] = step;
-                if (knightTour(sol,nextI,nextJ,step + 1,iMove,jMove)) return true;
-                sol[nextI][nextJ] = -1;
+                sol[nextI][nextJ] = step; // запоминаем ход
+                if (knightTour(sol,nextI,nextJ,step + 1,iMove,jMove)) // проверяем следующий ход step + 1
+                    return true;
+                sol[nextI][nextJ] = -1; // указываем, что данный ход не приводит к решению
             }
         }
         return false;
@@ -46,8 +48,9 @@ public class KnightsTour {
         int[] jMove = {1, 2, 2, 1, -1, -2, -2, -1};
         // Ставим коня на начальную клетку
         sol[1][1] = 0;
-        //
+        // вызов метода с начальной клетки sol[][]
         if (knightTour(sol, 1, 1, 1, iMove, jMove)) {
+            // при успешном решении, выводим # хода в консоль
             for (int i = 1; i <= N; i++) {
                 for (int j = 1; j <= N; j++) {
                     System.out.print(sol[i][j] + "\t");
