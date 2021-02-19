@@ -8,7 +8,7 @@ public class KnightsTour {
      * клетка [i][j] соотвествует ходу коня
      */
     public static boolean canMovieKnight (int i, int j, int sol[][]) {
-        if (i >= 1 && i <= N && j >= 1 && j <= N && sol[i][j] == -1) {
+        if (i >= 0 && i < N && j >= 0 && j < N && sol[i][j] == -1) {
             return true;
         }
         return false;
@@ -36,10 +36,10 @@ public class KnightsTour {
 
     public static boolean start() {
         // Инициализация доски
-        int[][] sol = new int[N + 1][N + 1];
+        int[][] sol = new int[N][N];
         // Заполнение доски значениями -1
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j<= N; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 sol[i][j] = -1;
             }
         }
@@ -47,12 +47,12 @@ public class KnightsTour {
         int[] iMove = {2, 1, -1, -2, -2, -1, 1, 2};
         int[] jMove = {1, 2, 2, 1, -1, -2, -2, -1};
         // Ставим коня на начальную клетку
-        sol[1][1] = 0;
+        sol[0][0] = 0;
         // вызов метода с начальной клетки sol[][]
-        if (knightTour(sol, 1, 1, 1, iMove, jMove)) {
+        if (knightTour(sol, 0, 0, 1, iMove, jMove)) {
             // при успешном решении, выводим # хода в консоль
-            for (int i = 1; i <= N; i++) {
-                for (int j = 1; j <= N; j++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
                     System.out.print(sol[i][j] + "\t");
                 }
                 System.out.println();
